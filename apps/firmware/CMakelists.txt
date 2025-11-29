@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.5)
+project(${PROJECT_NAME})
+set(PROJECT_NAME tik)
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+set(CPU esp32)
+set(IDF_TARGET esp32)
+
+set(MINIMUM_SDK_VERSION 3.2)
+
+set(SOURCES 
+    main.c
+)
+
+# include_directories(.)
+idf_component_register(SRCS ${SOURCES}
+                    INCLUDE_DIRS "."
+                    REQUIRES )
+
+target_compile_options(${PROJECT_NAME} PRIVATE -Wno-unused-variable -Wno-unused-but-set-variable -Wno-unused-function -Wno-unused-parameter -Wno-unused-label -Wno-unused-value -Wno-strict-aliasing -Wno-attributes -Wno-maybe-uninitialized -Wno-array-bounds -Wno-sequence-point -Wno-misleading-indentation -Wno-sign-compare -Wno-missing-field-initializers)
+target_link_libraries(${PROJECT_NAME} -Wl,--gc-sections -Wl,-Map=tik.map)

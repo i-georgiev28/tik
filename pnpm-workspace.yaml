@@ -1,0 +1,8 @@
+packages:
+  - config/*
+  - services/*
+  - packages/*
+  # - apps/*
+
+onlyBuiltDependencies:
+  - unrs-resolver
